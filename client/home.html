@@ -1,0 +1,43 @@
+<template name="home">
+	<h1 class="title">Briscola</h1>
+	{{> signupLogin}}
+	{{#if currentUser}}
+		{{> gameList}}
+		{{> userList}}
+	{{/if}}
+</template>
+
+<template name="gameList">
+	<h1>Partite</h1>
+	<ul>
+		{{#each games}}
+			{{> gameItem}}
+		{{/each}}
+	</ul>
+</template>
+
+<template name="gameItem">
+	<li>
+		<a href="/game/{{_id}}">Partita contro {{otherPlayer}}
+			{{#if inProgress}}
+				{{started}}
+			{{/if}}
+		</a>
+	</li>
+</template>
+
+<template name="userList">
+	<div class="column">
+		<h1>Giocatori</h1>
+		<p>Scegli un altro giocatore con cui iniziare una partita:</p>
+		<ul>
+			{{#each users}}
+				{{> userItem}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="userItem">
+	<li><button>{{username}}</button></li>
+</template>

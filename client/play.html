@@ -1,0 +1,63 @@
+<template name="play">
+	{{> signupLogin}}
+
+	{{#if currentUser}}
+		{{> status}}
+		{{#if inProgress}}
+			{{> briscola}}
+			{{> table}}
+			{{> hand}}
+		{{/if}}
+		{{> pile}}
+	{{/if}}
+</template>
+
+<template name="status">
+	<p><a href="/">&larr; Indietro</a></p>
+	<h2>Partita contro {{otherPlayer.username}} {{#if inProgress }} {{#if yourTurn}} (tuo turno) {{/if}} {{/if}}</h2>
+</template>
+
+<template name="briscola">
+	<div id="briscola">
+		<h2>Briscola</h2>
+		<div class="card {{briscola.suit}}">
+			<div>{{briscola.name}}</div>
+			<div>{{briscola.suit}}</div>
+		</div>
+	</div>
+</template>
+
+<template name="table">
+	<div id="table">
+		<h2>Tavolo</h2>
+		{{#each table}}
+		<div class="card {{suit}}">
+			<div>{{name}}</div>
+			<div>{{suit}}</div>
+		</div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="hand">
+	<div id="hand">
+		<h2>Mano</h2>
+		{{#each player.hand}}
+		<div class="card {{suit}}">
+			<div>{{name}}</div>
+			<div>{{suit}}</div>
+		</div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="pile">
+	<div id="pile">
+		<h2>Prese</h2>
+		<ul>
+			{{#each player.pile}}
+			<li>{{name}} di {{suit}}</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
